@@ -14,10 +14,9 @@ Ejecuta el programa con los siguientes argumentos:
 
 ```
 python stockholm.py [-h] [-r REVERSE] [-k GENKEY] [-s] [-v]
-
-```
-
 -r REVERSE o --reverse REVERSE: Proporciona la clave para desencriptar los archivos. Debe ser utilizado junto con el modo de desencriptación.
 -k GENKEY o --genkey: Genera una nueva clave de cifrado y la guarda en el archivo cif.key.
 -s o --silent: Modo silencioso. Ejecuta el programa sin mostrar mensajes.
 -v o --version: Muestra la versión del programa.
+```
+
