@@ -1,7 +1,10 @@
 
 # Stockholm Ransomware
 
-Este es un programa de ransomware que utiliza cifrado AES para encriptar archivos en el directorio /home/infection. Se han utilizado 
+Este es un programa de ransomware que utiliza cifrado AES para encriptar archivos en el directorio /home/infection. 
+Tiene una opción para devolver los archivos encriptados a la normalidad. Mediante el uso de la librería cryptography
+realiza el encriptamiento mediante la clave guardada en "cif.key". El programa también es capaz de generar una clave y guardarla en este mismo 
+archivo. Solo se encriptarán los archivos afectados por Wannacry. Cada vez que se encripte un archivo se le añadirá la extensión .ft
 
 ## Requisitos previos
 
