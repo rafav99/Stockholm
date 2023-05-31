@@ -2,9 +2,14 @@
 # Stockholm Ransomware
 
 Este es un programa de ransomware que utiliza cifrado AES para encriptar archivos en el directorio /home/infection. 
-Tiene una opción para devolver los archivos encriptados a la normalidad. Mediante el uso de la librería cryptography
-realiza el encriptamiento mediante la clave guardada en "cif.key". El programa también es capaz de generar una clave y guardarla en este mismo 
-archivo. Solo se encriptarán los archivos afectados por Wannacry. Cada vez que se encripte un archivo se le añadirá la extensión .ft
+
+1. Generación de una clave de encriptación: Antes de iniciar el proceso de encriptación, se genera una clave secreta utilizando el algoritmo Fernet de la biblioteca de criptografía de Python. Esta clave se guarda en un archivo llamado `cif.key`.
+
+2. Encriptación de archivos: Cuando se ejecuta el programa en modo de encriptación, todos los archivos con las extensiones especificadas en el directorio `/home/infection` serán encriptados. El programa lee cada archivo, lo cifra utilizando la clave generada y sobrescribe el archivo original con el archivo encriptado. Además, se cambia la extensión del archivo a `.ft` para indicar que ha sido encriptado.
+
+3. Desencriptación de archivos: Si se proporciona la clave de desencriptación utilizando el argumento `-r` o `--reverse`, el programa puede desencriptar los archivos encriptados previamente. Al ejecutar el programa en modo de desencriptación, se lee cada archivo encriptado, se utiliza la clave proporcionada para desencriptarlo y se guarda como un archivo sin encriptar, restaurando la extensión original.
+
+Es importante tener en cuenta que la clave de encriptación/desencriptación (`cif.key`) es fundamental para poder desencriptar los archivos. Asegúrate de guardar esta clave de forma segura, ya que sin ella no podrás recuperar los archivos encriptados.
 
 ## Requisitos previos
 
