@@ -20,3 +20,4 @@ python stockholm.py [-h] [-r REVERSE] [-k GENKEY] [-s] [-v]
 -s o --silent: Modo silencioso. Ejecuta el programa sin mostrar mensajes.
 -v o --version: Muestra la versión del programa.
 ---
+hola
