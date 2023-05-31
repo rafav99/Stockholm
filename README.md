@@ -1,7 +1,7 @@
 
 # Stockholm Ransomware
 
-Este es un programa de ransomware que utiliza cifrado AES para encriptar archivos en el directorio /home/infection. Sigue el siguiente proceso:
+Este es un programa de ransomware que utiliza cifrado AES para encriptar archivos en el directorio `/home/infection`. Sigue el siguiente proceso:
 
 1. Generación de una clave de encriptación: Antes de iniciar el proceso de encriptación, se genera una clave secreta utilizando el algoritmo Fernet de la biblioteca de criptografía de Python. Esta clave se guarda en un archivo llamado `cif.key`.
 

