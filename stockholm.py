@@ -85,7 +85,7 @@ if args.savedir:
 if args.genkey:
 	gen_key()
 
-dirpath = 'test/'
+dirpath = '/home/infection/'
 
 def getfiles(dirpath):
 	filelist = os.listdir(dirpath)
