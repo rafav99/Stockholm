@@ -59,18 +59,18 @@ def encript_file(filename):
 		
 def unencript_file(name, key):
 	if name.endswith('.ft'):
-		try:
-			cyphr = Fernet(key)
-			with open(name, 'rb') as text:
-				enc_data = text.read()
-			or_data = cyphr.decrypt(enc_data)
-			with open(name, 'wb') as or_file:
-				or_file.write(or_data)
-			os.rename(name, name[:len(name)-len('.ft')])
-			print(filename + " has been decrypted")
-		except:
-			print("Invalid key")
-			exit()
+		#try:
+		cyphr = Fernet(key)
+		with open(name, 'rb') as text:
+			enc_data = text.read()
+		or_data = cyphr.decrypt(enc_data)
+		with open(name, 'wb') as or_file:
+			or_file.write(or_data)
+		os.rename(name, name[:len(name)-len('.ft')])
+		print(filename + " has been decrypted")
+		#except:
+		#print("Invalid key")
+		#exit()
 
 if args.genkey:
 	gen_key()
